@@ -1,0 +1,41 @@
+<button type="button"
+        id="modalEmbarcadosPlataforma"
+        class="btn btn-success btn-lg btn-block"
+        tooltip="Vefique o total de embarques realizados por veículo"
+        placement="top"
+        (click)="abrirModal()">
+  <i class="fa fa-pie-chart fa-2x"
+     placement="right"
+     aria-hidden="true"></i>
+</button>
+
+
+
+<div bsModal #modalEmbarcadosHoje="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form #formFuncionario="ngForm" (submit)="cadastrarFuncionario(formFuncionario)">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left" >Embarques realizados por veículo</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="fecharModal(formFuncionario)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div style="display: block">
+              <canvas baseChart
+                      [data]="listaNumeroVeiculoEmbarcado"
+                      [labels]="listaVeiculoLabels"
+                      [colors]="colors"
+                      [chartType]="pieChartType"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="fecharModal()" class="btn btn-light">Fechar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

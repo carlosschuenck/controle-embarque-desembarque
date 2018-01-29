@@ -1,0 +1,85 @@
+<button type="button"
+        class="{{idFuncionario ? 'btn btn-warning' : 'btn btn-primary btn-lg btn-block'}}"
+        tooltip="{{idFuncionario ? 'Clique para editar as informações do funcionário.' : 'Clique para cadastrar um funcionário.'}}"
+        placement="top"
+  (click)="abrirModal()">
+  <i class="fa fa-id-card-o fa-2x"
+     placement="right"
+     *ngIf="!idFuncionario" aria-hidden="true"></i>
+  <i class="fa fa-pencil"
+     placement="top"
+     *ngIf="idFuncionario"
+     aria-hidden="true"></i>
+</button>
+
+
+<div bsModal #modalFuncionario="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form #formFuncionario="ngForm" (submit)="cadastrarFuncionario(formFuncionario)">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left" >{{idFuncionario ? 'Edição de Funcionário' : 'Cadastro de Funcionário'}}</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="fecharModal(formFuncionario)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <alert type="{{mensagem.tipo}}" *ngIf="mensagem.tipo">
+              <strong>{{mensagem.titulo}}</strong> {{mensagem.mensagem}}
+            </alert>
+            <div class="col-md-12 mb-3">
+              <label for="nome">Nome</label>
+              <input type="text"
+                     class="{{formFuncionario.submitted == true && nome.valid == false ? 'form-control is-invalid' : 'form-control'}}"
+                     id="nome"
+                     name="nome"
+                     aria-describedby="nomeHelp"
+                     placeholder="Nome do funcionário"
+                     [(ngModel)]="functionario.nome"
+                     #nome="ngModel"
+                     required>
+              <div class="invalid-feedback" *ngIf="(nome.valid == false && formFuncionario.submitted == true)">
+                    O nome do funcionário é obrigatório
+              </div>
+            </div>
+            <div  class="col-md-8 mb-3">
+                <label for="funcao">Função</label>
+                <input type="text"
+                       class="{{formFuncionario.submitted == true && funcao.valid == false ? 'form-control is-invalid' : 'form-control'}}"
+                       id="funcao"
+                       name="funcao"
+                       aria-describedby="funcaoHelp"
+                       placeholder="Função que o funcionário exercer"
+                       [(ngModel)]="functionario.funcao"
+                       #funcao="ngModel"
+                       required>
+                <div class="invalid-feedback" *ngIf="(funcao.valid == false && formFuncionario.submitted == true)">
+                  A função do funcionário é obrigatória
+                </div>
+            </div>
+              <div class="col-md-8 mb-3">
+                  <label for="empresa">Empresa</label>
+                  <input type="text"
+                         class="{{formFuncionario.submitted == true && empresa.valid == false ? 'form-control is-invalid' : 'form-control'}}"
+                         id="empresa"
+                         name="empresa"
+                         aria-describedby="empresaHelp"
+                         placeholder="Empresa empregadora do funcionário"
+                         [(ngModel)]="functionario.empresa"
+                         #empresa="ngModel"
+                         required>
+                  <div class="invalid-feedback" *ngIf="(empresa.valid == false && formFuncionario.submitted == true)">
+                    A empresa do funcionário é obrigatória
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          <button type="button" (click)="fecharModal(formFuncionario)" class="btn btn-light">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

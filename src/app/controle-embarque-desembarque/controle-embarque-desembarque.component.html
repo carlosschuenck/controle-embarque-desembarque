@@ -1,0 +1,134 @@
+<div class="container">
+  <br>
+  <div class="jumbotron">
+    <div class="row justify-content-md-center">
+      <div class="col-3">
+        <i class="fa fa-ship fa-5x"></i>
+      </div>
+      <div class="col">
+        <h1>Embarque e Desembarque</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <form #formControle="ngForm"
+        (submit)="embarcarOuDesembarcarFuncionario(formControle)">
+    <alert type="{{mensagem.tipo}}"
+           *ngIf="mensagem.tipo">
+      <strong>{{mensagem.titulo}}</strong> {{mensagem.mensagem}}
+    </alert>
+    <div class="row justify-content-lg-center">
+      <div class="offset-md-5 col-md-11 mb-3">
+        <div class="row">
+          <div class="col">
+            <label for="dataEmbarque">Veículo</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <select
+                    class="{{isDesembarque == false && formControle.submitted == true && plataformaNavio.valid == false ? 'custom-select is-invalid' : 'custom-select'}}"
+                    id="plataformaNavio"
+                    name="plataformaNavio"
+                    [(ngModel)]="controle.idPlataformaNavio"
+                    placeholder="Selecione o navio ou plataforma"
+                    [disabled]="isDesembarque == true"
+                    #plataformaNavio="ngModel"
+                    required>
+              <option *ngFor="let pn of plataformaNavioList" [ngValue]="pn.id">{{pn.nome}}</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="(plataformaNavio.valid == false && formControle.submitted == true)">
+              Selecione o veículo de embarque do funcionário.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="offset-md-5 col-md-11 mb-3">
+        <div class="row">
+          <div class="col">
+              <label for="dataEmbarque">Data de embarque</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5">
+            <input type="text"
+                   id="dataEmbarque"
+                   class="{{isDesembarque == false && formControle.submitted == true && dataEmbarque.valid == false ? 'form-control is-invalid' : 'form-control'}}"
+                   [minDate]="minDate"
+                   [maxDate]="maxDate"
+                   #dpEmbarque="bsDatepicker"
+                   [bsConfig]="{ locale: 'pt-br', containerClass: 'theme-dark-blue', dateInputFormat: 'DD/MM/YYYY' }"
+                   bsDatepicker [(bsValue)]="bsValueEmbarque"
+                   placeholder="Informe a data que o funcionário irá embarcar..."
+                   [disabled]="isDesembarque == true"
+                   readonly
+                   tooltip="Clique no campo ou no botão ao lado para informar a data"
+                   placement="bottom"
+                   name="dataEmbarque"
+                   #dataEmbarque="ngModel"
+                   [(ngModel)]="controle.dataEmbarque"
+                   required>
+            <div class="invalid-feedback" *ngIf="(dataEmbarque.valid == false && formControle.submitted == true)">
+              Preencha corretamente a data.
+            </div>
+          </div>
+          <div class="col-3">
+            <button type="button"
+                    class="btn btn-primary"
+                    [hidden]="isDesembarque == true"
+                    (click)="dpEmbarque.toggle()">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="offset-md-5 col-md-11 mb-3" *ngIf="isDesembarque == true">
+        <div class="row">
+          <div class="col">
+            <label for="dataEmbarque">Data de desembarque</label>
+          </div>
+        </div>
+        <div class="row" *ngIf="isDesembarque == true">
+          <div class="col-5">
+            <input type="text"
+                   id="dataDesembarque"
+                   class="{{formControle.submitted == true && dataDesembarque.valid == false ? 'form-control is-invalid' : 'form-control'}}"
+                   [minDate]="minDate"
+                   [maxDate]="maxDate"
+                   #dpDesembarque="bsDatepicker"
+                   [bsConfig]="{ locale: 'pt-br', containerClass: 'theme-dark-blue', dateInputFormat: 'DD/MM/YYYY' }"
+                   bsDatepicker [(bsValue)]="bsValueDesembarque"
+                   tooltip="Clique no campo ou no botão ao lado para informar a data"
+                   placement="bottom"
+                   placeholder="Informe a data que o funcionário irá desembarcar..."
+                   name="dataDesembarque"
+                   readonly
+                   #dataDesembarque="ngModel"
+                   [(ngModel)]="controle.dataDesembarque"
+                   required>
+            <div class="invalid-feedback" *ngIf="(dataDesembarque.valid == false && formControle.submitted == true)">
+              Preenchar a data corretamente.
+            </div>
+          </div>
+          <div class="col-3">
+            <button type="button" class="btn btn-primary" (click)="dpDesembarque.toggle()"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <button type="submit"
+                class="btn btn-primary">{{isDesembarque ? 'Desembarcar' : 'Embarcar'}}
+        </button>
+        <button type="button"
+                [routerLink]="['/']"
+                class="btn btn-light">Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

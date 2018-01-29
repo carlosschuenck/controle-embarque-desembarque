@@ -1,0 +1,142 @@
+<div class="container">
+  <br>
+  <div class="jumbotron">
+    <div class="row justify-content-md-center">
+      <div class="col-3">
+        <i class="fa fa-ship fa-5x"></i>
+      </div>
+      <div class="col">
+        <h1>Listagem de Funcionários</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <app-cadastro-funcionario></app-cadastro-funcionario>
+    </div>
+    <div class="col-2">
+      <app-embarcados-por-filtro [embarcados]="embarcadoList.length" [naoEmbarcados]="naoEmbarcadoList.length"></app-embarcados-por-filtro>
+    </div>
+    <div class="col-2">
+      <app-embarcados-plataforma [listaNumeroVeiculoEmbarcado]="listaNumeroVeiculoEmbarcado" [listaVeiculoLabels]="listaVeiculoLabels" ></app-embarcados-plataforma>
+    </div>
+  </div>
+</div>
+
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <alert type="{{mensagem.tipo}}" *ngIf="mensagem.tipo">
+        <strong>{{mensagem.titulo}}</strong> {{mensagem.mensagem}}
+      </alert>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-4">
+        <input type="text"
+               id="dataInicio"
+               class="form-control"
+               #dp1="bsDatepicker"
+               [bsConfig]="{ locale: 'pt-br', containerClass: 'theme-dark-blue', dateInputFormat: 'DD/MM/YYYY' }"
+               bsDatepicker [(bsValue)]="bsValue1"
+               placeholder="Data inicio"
+               readonly
+               tooltip="Clique no campo ou no botão ao lado para informar a data"
+               placement="bottom"
+               name="dataInicio"
+               [(ngModel)]="filtro.dataInicioEmbarque">
+      </div>
+      <div class="col-1">
+        <button type="button" class="btn btn-primary" (click)="dp1.toggle()"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+      </div>
+      <div class="col-4 ">
+        <input type="text"
+               id="dataFim"
+               class="form-control"
+               #dp2="bsDatepicker"
+               [bsConfig]="{ locale: 'pt-br', containerClass: 'theme-dark-blue', dateInputFormat: 'DD/MM/YYYY' }"
+               bsDatepicker [(bsValue)]="bsValue2"
+               name="dataFim"
+               readonly
+               tooltip="Clique no campo ou no botão ao lado para informar a data"
+               placement="bottom"
+               placeholder="Data fim"
+               [(ngModel)]="filtro.dataFimEmbarque">
+      </div>
+      <div class="col-1">
+        <button type="button" class="btn btn-primary" (click)="dp2.toggle()"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+      </div>
+    <div class="col-1">
+      <button type="button"
+              tooltip="Filtra funcionários que embarcaram no periodo informado."
+              placement="top"
+              class="btn btn-primary"
+              (click)="buscarEmbarquesPorData()">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<br><br>
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col">
+    <table class="table table-hover table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Função</th>
+        <th scope="col" >Empresa</th>
+        <th scope="col">Embarcado</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let func of funcionarioList">
+          <td>{{func.nome}}</td>
+          <td>{{func.funcao}}</td>
+          <td>{{func.empresa}}</td>
+          <td>{{func.embarcado ? 'Sim' : 'Não'}}</td>
+          <td>
+            <button type="button" class="btn btn-default btn-primary"
+                    tooltip="Clique para desembarcar o funcionário."
+                    placement="left"
+                    [routerLink]="['/controle-embarque-desembarque', func.id]"
+                    *ngIf="func.embarcado === true" aria-hidden="true">
+              <i class="fa fa-ship">
+              </i>
+            </button>
+            <button type="button" class="btn btn-default btn-primary"
+                    tooltip="Clique para embarcar o funcionário."
+                    placement="left"
+                    [routerLink]="['/controle-embarque-desembarque', func.id]"
+                    *ngIf="func.embarcado === false" aria-hidden="true">
+              <i class="fa fa-user fa-lg"> </i>
+            </button>
+            <app-cadastro-funcionario [idFuncionario]="func.id"></app-cadastro-funcionario>
+            <button type="button"
+                    class="btn btn-default btn-danger"
+                    tooltip="Clique para excluir o funcionário."
+                    placement="right"
+                    (click)="abrirModalExclusao(modalExclusao)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <ng-template #modalExclusao>
+              <div class="modal-body text-center">
+                Ao excluir o funcionário também excluirá os seus registros de embarque e desembarque.
+                <p><strong>Tem certeza que deseja excluir o funcionário?</strong></p>
+                <button type="button" class="btn btn-default" (click)="confirmarExclusao(func.id, func.nome)" >Sim</button>
+                <button type="button" class="btn btn-primary" (click)="fecharModalExclusao()" >Não</button>
+              </div>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+
+

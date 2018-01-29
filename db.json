@@ -1,0 +1,22 @@
+{
+  "funcionarios": [ ],
+  "controle_embarque_desembarque": [],
+  "plataforma_navio": [
+    {
+      "id": 1,
+      "nome": "Plataforma Petroleo 1"
+    },
+    {
+      "id": 2,
+      "nome": "Plataforma 2"
+    },
+    {
+      "id": 3,
+      "nome": "Navio Petroleo 1"
+    },
+    {
+      "id": 4,
+      "nome": "Navio 2"
+    }
+  ]
+}
