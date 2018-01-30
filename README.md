@@ -1,27 +1,18 @@
 # BoatControl
 
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.5.
 
-## Development server
+##Pre-requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1 - NodeJS instalado, versão v8.4.0 (ou superior) (link: https://nodejs.org/en/download/)
+2 - Angular CLI, versão 1.6.5 (ou superior) (link: https://cli.angular.io/)
 
-## Code scaffolding
+## Passo-a-passo
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1 - Após o pre-requisito, descompacte o arquivo do projeto em uma pasta.
+2 - Abra o CMD e vá até o diretório onde está o arquivo package.json, dentro da pasta descompactada
+3 - Execute o comando 'npm install'
+4 - Executa o comando 'npm start'
+5 - Abra outro CMD, como foi feito no passo 4. Após isto, execute o comando 'json-server db.json'
