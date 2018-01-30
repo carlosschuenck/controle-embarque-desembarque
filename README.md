@@ -3,9 +3,9 @@
 
 ## Pre-requisitos
 
-1 - NodeJS instalado, versão v8.4.0 (ou superior) (link: https://nodejs.org/en/download/)
+1 - Instalar NodeJS, versão v8.4.0 (ou superior) (link: https://nodejs.org/en/download/)
 
-2 - Angular CLI, versão 1.6.5 (ou superior) (link: https://cli.angular.io/)
+2 - Instalar Angular CLI, versão 1.6.5 (ou superior) (link: https://cli.angular.io/)
 
 ## Passo-a-passo
 
@@ -15,8 +15,8 @@
 
 3 - Execute o comando 'npm install'
 
-4 - Executa o comando 'npm start'.
+4 - Execute o comando 'npm start'.
 
 5 - Abra outro CMD, como foi feito no passo 4. Após isto, execute o comando 'json-server db.json'
 
-6 - Acesse através do link: http://localhost:4200/
+6 - Acesse a aplicação através do link: http://localhost:4200/
