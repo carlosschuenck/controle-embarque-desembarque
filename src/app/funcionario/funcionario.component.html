@@ -91,7 +91,6 @@
         <th scope="col">Função</th>
         <th scope="col" >Empresa</th>
         <th scope="col">Embarcado</th>
-        <th scope="col">Data de Embarque</th>
         <th></th>
       </tr>
       </thead>
@@ -101,11 +100,10 @@
           <td>{{func.funcao}}</td>
           <td>{{func.empresa}}</td>
           <td>{{func.embarcado ? 'Sim' : 'Não'}}</td>
-          <td>{{func.dataEmbarque | date: 'dd/MM/yyyy'}}</td>
           <td>
             <button type="button" class="btn btn-default btn-primary"
                     tooltip="Clique para desembarcar o funcionário."
-                    placement="top"
+                    placement="left"
                     [routerLink]="['/controle-embarque-desembarque', func.id]"
                     *ngIf="func.embarcado === true" aria-hidden="true">
               <i class="fa fa-ship">
@@ -113,7 +111,7 @@
             </button>
             <button type="button" class="btn btn-default btn-primary"
                     tooltip="Clique para embarcar o funcionário."
-                    placement="top"
+                    placement="left"
                     [routerLink]="['/controle-embarque-desembarque', func.id]"
                     *ngIf="func.embarcado === false" aria-hidden="true">
               <i class="fa fa-user fa-lg"> </i>

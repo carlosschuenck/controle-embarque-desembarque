@@ -107,7 +107,6 @@ export class FuncionarioComponent implements OnInit {
       .subscribe( controleEmbarqueDesembarque => {
           if(controleEmbarqueDesembarque.length !== 0 && controleEmbarqueDesembarque[0].dataEmbarque && !controleEmbarqueDesembarque[0].dataDesembarque){
             funcionario.embarcado = true;
-            funcionario.dataEmbarque = controleEmbarqueDesembarque[0].dataEmbarque;
             this.embarcadoList.push(this.embarcadoList.length + 1);
           }else{
             funcionario.embarcado = false;
