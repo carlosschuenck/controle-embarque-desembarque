@@ -37,6 +37,7 @@
                      aria-describedby="nomeHelp"
                      placeholder="Nome do funcionário"
                      [(ngModel)]="functionario.nome"
+                     maxlength="60"
                      #nome="ngModel"
                      required>
               <div class="invalid-feedback" *ngIf="(nome.valid == false && formFuncionario.submitted == true)">
@@ -52,6 +53,7 @@
                        aria-describedby="funcaoHelp"
                        placeholder="Função que o funcionário exercer"
                        [(ngModel)]="functionario.funcao"
+                       maxlength="40"
                        #funcao="ngModel"
                        required>
                 <div class="invalid-feedback" *ngIf="(funcao.valid == false && formFuncionario.submitted == true)">
@@ -67,6 +69,7 @@
                          aria-describedby="empresaHelp"
                          placeholder="Empresa empregadora do funcionário"
                          [(ngModel)]="functionario.empresa"
+                         maxlength="40"
                          #empresa="ngModel"
                          required>
                   <div class="invalid-feedback" *ngIf="(empresa.valid == false && formFuncionario.submitted == true)">

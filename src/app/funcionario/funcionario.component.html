@@ -91,7 +91,9 @@
         <th scope="col">Função</th>
         <th scope="col" >Empresa</th>
         <th scope="col">Embarcado</th>
-        <th></th>
+        <th scope="col">Data de Embarque</th>
+        <th scope="col" colspan="3"></th>
+
       </tr>
       </thead>
       <tbody>
@@ -100,36 +102,53 @@
           <td>{{func.funcao}}</td>
           <td>{{func.empresa}}</td>
           <td>{{func.embarcado ? 'Sim' : 'Não'}}</td>
+          <td>{{func.dataEmbarque | date: 'dd/MM/yyyy'}}</td>
           <td>
-            <button type="button" class="btn btn-default btn-primary"
-                    tooltip="Clique para desembarcar o funcionário."
-                    placement="left"
-                    [routerLink]="['/controle-embarque-desembarque', func.id]"
-                    *ngIf="func.embarcado === true" aria-hidden="true">
-              <i class="fa fa-ship">
-              </i>
-            </button>
-            <button type="button" class="btn btn-default btn-primary"
-                    tooltip="Clique para embarcar o funcionário."
-                    placement="left"
-                    [routerLink]="['/controle-embarque-desembarque', func.id]"
-                    *ngIf="func.embarcado === false" aria-hidden="true">
-              <i class="fa fa-user fa-lg"> </i>
-            </button>
-            <app-cadastro-funcionario [idFuncionario]="func.id"></app-cadastro-funcionario>
-            <button type="button"
-                    class="btn btn-default btn-danger"
-                    tooltip="Clique para excluir o funcionário."
-                    placement="right"
-                    (click)="abrirModalExclusao(modalExclusao)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            <ng-template #modalExclusao>
-              <div class="modal-body text-center">
-                Ao excluir o funcionário também excluirá os seus registros de embarque e desembarque.
-                <p><strong>Tem certeza que deseja excluir o funcionário?</strong></p>
-                <button type="button" class="btn btn-default" (click)="confirmarExclusao(func.id, func.nome)" >Sim</button>
-                <button type="button" class="btn btn-primary" (click)="fecharModalExclusao()" >Não</button>
+            <div class="row">
+              <div class="col-3">
+                <button type="button" class="btn btn-default btn-primary"
+                        tooltip="Clique para desembarcar o funcionário."
+                        placement="top"
+                        [routerLink]="['/controle-embarque-desembarque', func.id]"
+                        *ngIf="func.embarcado === true" aria-hidden="true">
+                  <i class="fa fa-ship">
+                  </i>
+                </button>
+                <button type="button" class="btn btn-default btn-primary"
+                        tooltip="Clique para embarcar o funcionário."
+                        placement="top"
+                        [routerLink]="['/controle-embarque-desembarque', func.id]"
+                        *ngIf="func.embarcado === false" aria-hidden="true">
+                  <i class="fa fa-user fa-lg"> </i>
+                </button>
               </div>
-            </ng-template>
+            </div>
+          </td>
+          <td>
+            <div class="row">
+              <div class="col-3">
+                <app-cadastro-funcionario [idFuncionario]="func.id"></app-cadastro-funcionario>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="row">
+              <div class="col-3">
+                <button type="button"
+                        class="btn btn-default btn-danger"
+                        tooltip="Clique para excluir o funcionário."
+                        placement="right"
+                        (click)="abrirModalExclusao(modalExclusao)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <ng-template #modalExclusao>
+                  <div class="modal-body text-center">
+                    Ao excluir o funcionário também excluirá os seus registros de embarque e desembarque.
+                    <p><strong>Tem certeza que deseja excluir o funcionário?</strong></p>
+                    <button type="button" class="btn btn-default" (click)="confirmarExclusao(func.id, func.nome)" >Sim</button>
+                    <button type="button" class="btn btn-primary" (click)="fecharModalExclusao()" >Não</button>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
           </td>
         </tr>
       </tbody>
