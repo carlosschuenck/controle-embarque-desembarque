@@ -1,6 +1,80 @@
 {
-  "funcionarios": [ ],
-  "controle_embarque_desembarque": [],
+  "funcionarios": [
+    {
+      "nome": "Carlos Alberto Schuenck Junior",
+      "funcao": "Funcao",
+      "empresa": "Empresa",
+      "embarcado": false,
+      "dataEmbarque": null,
+      "id": 1
+    },
+    {
+      "nome": "Carlos Alberto Schuenck Junior 2",
+      "funcao": "bom bordo 4",
+      "empresa": "Empresa Teste 4",
+      "embarcado": false,
+      "dataEmbarque": null,
+      "id": 2
+    },
+    {
+      "nome": "dasdadas",
+      "funcao": "dasdasdads",
+      "empresa": "dasdadas",
+      "embarcado": false,
+      "dataEmbarque": null,
+      "id": 3
+    },
+    {
+      "nome": "dasdadada",
+      "funcao": "dasdasdad",
+      "empresa": "dasdasdasd",
+      "embarcado": false,
+      "dataEmbarque": null,
+      "id": 4
+    },
+    {
+      "nome": "daddddddd",
+      "funcao": "dasdasdads",
+      "empresa": "dadasdadas",
+      "embarcado": false,
+      "dataEmbarque": null,
+      "id": 5
+    },
+    {
+      "nome": "dasdasdasadadasdasdasdas",
+      "funcao": "dasdasdasdadadad",
+      "empresa": "adsadadsdadasd",
+      "embarcado": false,
+      "dataEmbarque": null,
+      "id": 6
+    }
+  ],
+  "controle_embarque_desembarque": [
+    {
+      "idFuncionario": 1,
+      "idPlataformaNavio": 1,
+      "dataEmbarque": "2018-01-02T00:26:22.000Z",
+      "id": 1
+    },
+    {
+      "idFuncionario": 2,
+      "idPlataformaNavio": 2,
+      "dataEmbarque": "2018-01-03T00:27:09.000Z",
+      "id": 2
+    },
+    {
+      "idFuncionario": 3,
+      "dataEmbarque": "2018-01-04T00:27:09.000Z",
+      "idPlataformaNavio": 3,
+      "id": 3
+    },
+    {
+      "idFuncionario": 4,
+      "idPlataformaNavio": 4,
+      "dataEmbarque": "2018-01-12T00:27:09.000Z",
+      "id": 4
+    }
+  ],
   "plataforma_navio": [
     {
       "id": 1,
